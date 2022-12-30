@@ -1,20 +1,17 @@
-import pygame
+from pygame import Surface
+from pygame.event import Event
 
 from screens.BaseScreen import BaseScreen
-from screens.GameScreen import GameScreen
 
 
 class MainMenuScreen(BaseScreen):
 
-    def __init__(self, screen_width, screen_height):
-        super().__init__(screen_width, screen_height)
+    def __init__(self, screen_width: int, screen_height: int):
+        super().__init__(screen_width=screen_width, screen_height=screen_height)
 
-    def render(self, screen):
+    def render(self, screen: Surface):
         # Render the main menu screen
-        screen.fill((0, 100, 0))
+        screen.fill(color=(0, 100, 0))
 
-    def handle_input(self, event):
-        super().handle_input(event)
-        # Handle input events for the main menu screen
-
-
+    def handle_input(self, event: Event):
+        super().handle_input(event=event)
