@@ -1,3 +1,4 @@
+import pygame
 from pygame import Surface, display
 from pygame.event import Event
 

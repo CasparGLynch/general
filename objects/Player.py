@@ -15,7 +15,7 @@ class Player:
         self.sprite = pygame.image.load(sprite_image).convert_alpha()
         self.sprite = pygame.transform.scale(self.sprite, (defs.screen_width / 15, defs.screen_width / 15))
         self.rect = self.sprite.get_rect(topleft=(self.x, self.y))
-        self.velocity = 1
+        self.velocity = 2
         self.lerp_factor = 0.05
         self.moving_left = False
         self.clock = clock
@@ -40,7 +40,8 @@ class Player:
         new_y = self.y + (self.target_y - self.y) * self.lerp_factor
 
         # image changer for when Lardon is in movement
-        if (abs(new_x) > abs(self.x) + 0.5) | (abs(new_x) < abs(self.x) - 0.5):
+        if (abs(new_x) > abs(self.x) + abs(self.x)/defs.screen_width) | \
+                (abs(new_x) < abs(self.x) - abs(self.y)/defs.screen_height):
             if time.time() - self.clock > 0.16:
                 image = self.images.pop()
                 self.sprite = pygame.image.load(image).convert_alpha()

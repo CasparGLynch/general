@@ -9,12 +9,13 @@ from screens.MainMenuScreen import MainMenuScreen
 # Initialize Pygame and create a window
 pygame.init()
 pygame.key.set_repeat(1, 40)
-
+pygame.mouse.set_visible(False)
 
 class Game:
     # Set the initial screen to the main menu screen
     def __init__(self, screen_width, screen_height):
-        self.pyscreen = pygame.display.set_mode((defs.screen_width, defs.screen_height))
+        self.pyscreen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        defs.screen_width, defs.screen_height = 1920, 1080
         self.current_screen = MainMenuScreen(screen_width, screen_height)
         self.clock = time.time()
 
@@ -37,6 +38,7 @@ class Game:
                                 clock=self.clock
                             )
                             self.pyscreen.fill(color=(0, 0, 100))
+
 
             # Update and render the current screen
             self.current_screen.update()
