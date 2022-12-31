@@ -15,22 +15,27 @@ class Player:
         self.sprite = pygame.image.load(sprite_image).convert_alpha()
         self.sprite = pygame.transform.scale(self.sprite, (defs.screen_width / 15, defs.screen_width / 15))
         self.rect = self.sprite.get_rect(topleft=(self.x, self.y))
-        self.velocity = 1.25
+        self.velocity = 1
         self.lerp_factor = 0.05
         self.moving_left = False
         self.clock = clock
         self.images = ['images/player.png', 'images/player_move.png']
 
     def move(self):
+        print(f'y:{self.target_y}, x:{self.target_x}')
         keys = pygame.key.get_pressed()
         if keys[pygame.K_w]:
-            self.target_y -= self.velocity
+            if not self.target_y - self.velocity < 0:
+                self.target_y -= self.velocity
         if keys[pygame.K_s]:
-            self.target_y += self.velocity
+            if not self.target_y + self.velocity > 0.890625 * defs.screen_height:
+                self.target_y += self.velocity
         if keys[pygame.K_a]:
-            self.target_x -= self.velocity
+            if not self.target_x - self.velocity < 0:
+                self.target_x -= self.velocity
         if keys[pygame.K_d]:
-            self.target_x += self.velocity
+            if not self.target_x + self.velocity > 0.9359375 * defs.screen_width:
+                self.target_x += self.velocity
         # movement smoothening
         new_x = self.x + (self.target_x - self.x) * self.lerp_factor
         new_y = self.y + (self.target_y - self.y) * self.lerp_factor

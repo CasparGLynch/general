@@ -1,4 +1,5 @@
 import pygame
+from pygame import display
 from pygame.event import Event
 
 
@@ -8,11 +9,11 @@ class BaseScreen:
         self.screen_height = screen_height
         self.running = True
 
-    def render(self, screen: pygame.Surface):
+    def render(self, screen: display):
         # Render the screen
         raise NotImplementedError()
 
-    def update(self, screen: pygame.Surface):
+    def update(self):
         raise NotImplementedError()
 
     def handle_input(self, event: Event):

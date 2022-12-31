@@ -14,7 +14,7 @@ pygame.key.set_repeat(1, 40)
 class Game:
     # Set the initial screen to the main menu screen
     def __init__(self, screen_width, screen_height):
-        self.pyscreen = pygame.display.set_mode((screen_width, screen_height))
+        self.pyscreen = pygame.display.set_mode((defs.screen_width, defs.screen_height))
         self.current_screen = MainMenuScreen(screen_width, screen_height)
         self.clock = time.time()
 
@@ -39,7 +39,7 @@ class Game:
                             self.pyscreen.fill(color=(0, 0, 100))
 
             # Update and render the current screen
-            self.current_screen.update(screen=self.pyscreen)
+            self.current_screen.update()
 
             self.current_screen.render(screen=self.pyscreen)
             pygame.display.flip()
