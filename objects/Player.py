@@ -13,8 +13,9 @@ class Player:
         self.sprite = pygame.image.load(sprite_image).convert_alpha()
         self.sprite = pygame.transform.scale(self.sprite, (defs.screen_width / 15, defs.screen_width / 15))
         self.rect = self.sprite.get_rect(topleft=(self.x, self.y))
-        self.velocity = 3
+        self.velocity = 1.25
         self.lerp_factor = 0.05
+        self.moving_left = False
 
     def move(self):
         keys = pygame.key.get_pressed()
@@ -26,9 +27,18 @@ class Player:
             self.target_x -= self.velocity
         if keys[pygame.K_d]:
             self.target_x += self.velocity
-
         # movement smoothening
+        new_x = self.x + (self.target_x - self.x) * self.lerp_factor
+        new_y = self.y + (self.target_y - self.y) * self.lerp_factor
 
-        self.x = self.x + (self.target_x - self.x) * self.lerp_factor
-        self.y = self.y + (self.target_y - self.y) * self.lerp_factor
+        if (new_x < self.x) and not self.moving_left:
+            self.sprite = pygame.transform.flip(self.sprite, True, False)
+            self.moving_left = True
+        elif (new_x >= self.x) and self.moving_left:
+            self.sprite = pygame.transform.flip(self.sprite, True, False)
+            self.moving_left = False
+
+        self.x = new_x
+        self.y = new_y
+
         self.rect.topleft = (self.x, self.y)
