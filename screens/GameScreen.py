@@ -10,10 +10,11 @@ from screens.BaseScreen import BaseScreen
 
 class GameScreen(BaseScreen):
 
-    def __init__(self, screen_width: int, screen_height: int, level: int):
+    def __init__(self, screen_width: int, screen_height: int, level: int, clock: float):
         super().__init__(screen_width=screen_width, screen_height=screen_height)
         self.level = level
-        self.player = Player(0, 0, "images/player.png")
+        self.clock = clock
+        self.player = Player(0, 0, "images/player.png", clock)
 
     def render(self, screen: Surface):
         screen.fill(color=(0, 0, 100))

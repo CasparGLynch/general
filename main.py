@@ -1,7 +1,8 @@
+import time
+
 import pygame
 
 import defs
-from screens.BaseScreen import BaseScreen
 from screens.GameScreen import GameScreen
 from screens.MainMenuScreen import MainMenuScreen
 
@@ -15,6 +16,7 @@ class Game:
     def __init__(self, screen_width, screen_height):
         self.pyscreen = pygame.display.set_mode((screen_width, screen_height))
         self.current_screen = MainMenuScreen(screen_width, screen_height)
+        self.clock = time.time()
 
     # Main game loop
 
@@ -31,7 +33,8 @@ class Game:
                             self.current_screen = GameScreen(
                                 screen_width=screen_width,
                                 screen_height=screen_height,
-                                level=0
+                                level=0,
+                                clock=self.clock
                             )
                             self.pyscreen.fill(color=(0, 0, 100))
 
@@ -39,7 +42,6 @@ class Game:
             self.current_screen.update(screen=self.pyscreen)
 
             self.current_screen.render(screen=self.pyscreen)
-
             pygame.display.flip()
 
 
