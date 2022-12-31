@@ -12,6 +12,9 @@ class BaseScreen:
         # Render the screen
         raise NotImplementedError()
 
+    def update(self, screen: pygame.Surface):
+        raise NotImplementedError()
+
     def handle_input(self, event: Event):
         if event.type == pygame.QUIT:
             self.running = False

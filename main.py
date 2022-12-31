@@ -1,11 +1,13 @@
 import pygame
 
+import defs
 from screens.BaseScreen import BaseScreen
 from screens.GameScreen import GameScreen
 from screens.MainMenuScreen import MainMenuScreen
 
 # Initialize Pygame and create a window
 pygame.init()
+pygame.key.set_repeat(1, 40)
 
 
 class Game:
@@ -31,18 +33,16 @@ class Game:
                                 screen_height=screen_height,
                                 level=0
                             )
-                        elif isinstance(self.current_screen, GameScreen):
-                            screen_width = self.current_screen.screen_width
-                            screen_height = self.current_screen.screen_height
-                            self.current_screen = MainMenuScreen(
-                                screen_width=screen_width,
-                                screen_height=screen_height,
-                            )
+                            self.pyscreen.fill(color=(0, 0, 100))
+
             # Update and render the current screen
+            self.current_screen.update(screen=self.pyscreen)
+
             self.current_screen.render(screen=self.pyscreen)
+
             pygame.display.flip()
 
 
 if __name__ == '__main__':
-    game = Game(screen_width=1600, screen_height=800)
+    game = Game(screen_width=defs.screen_width, screen_height=defs.screen_width)
     game.run()

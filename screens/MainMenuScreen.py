@@ -13,5 +13,8 @@ class MainMenuScreen(BaseScreen):
         # Render the main menu screen
         screen.fill(color=(0, 100, 0))
 
+    def update(self, screen: Surface):
+        pass
+
     def handle_input(self, event: Event):
         super().handle_input(event=event)
