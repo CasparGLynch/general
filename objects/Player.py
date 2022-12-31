@@ -22,7 +22,6 @@ class Player:
         self.images = ['images/player.png', 'images/player_move.png']
 
     def move(self):
-        print(f'y:{self.target_y}, x:{self.target_x}')
         keys = pygame.key.get_pressed()
         if keys[pygame.K_w]:
             if not self.target_y - self.velocity < 0:
